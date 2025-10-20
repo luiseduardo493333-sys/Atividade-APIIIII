@@ -21,3 +21,8 @@ def catalogo():
             "preco": roupa[5],
             "estoque": roupa[6]
         })
+
+@app.post("/roupas")
+def adicionar_roupa(nome: str, categoria: str, tamanho: str, cor: str, preco: float, estoque: int):
+    funcao.criar_roupa(nome, categoria, tamanho, cor, preco, estoque)
+    return {"Mensagem": "Roupa adicionada com sucesso!"}
