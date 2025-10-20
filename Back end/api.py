@@ -7,7 +7,7 @@ app = FastAPI(title="Loja de Roupas")
 def home():
     return {"Mensagem": "Bem-vindo à Loja!"}
 
-@app.get("/roupas")
+@app.get("/lojs")
 def catalogo():
     roupas = funcao.listar_roupas()
     lista = []
@@ -22,7 +22,7 @@ def catalogo():
             "estoque": roupa[6]
         })
 
-@app.post("/roupas")
+@app.post("/lojs")
 def adicionar_roupa(nome: str, categoria: str, tamanho: str, cor: str, preco: float, estoque: int):
     funcao.criar_roupa(nome, categoria, tamanho, cor, preco, estoque)
     return {"Mensagem": "Roupa adicionada com sucesso!"}
@@ -37,7 +37,7 @@ def atualizar_roupa(id_roupa: int, novo_preco: float):
         return {"Erro": "Roupa não encontrada."}
     
 
-@app.delete("/roupas/{id_roupa}")
+@app.delete("/lojs/{id_roupa}")
 def deletar_roupa(id_roupa: int):
     roupa = funcao.buscar_roupa(id_roupa)
     if roupa:
@@ -46,7 +46,7 @@ def deletar_roupa(id_roupa: int):
     else:
         return {"Erro": "Roupa não encontrada"}
  
-@app.get("/roupas/{id_roupa}")
+@app.get("/lojs/{id_roupa}")
 def obter_roupa(id_roupa: int):
     roupa = funcao.buscar_roupa(id_roupa)
     if roupa:
