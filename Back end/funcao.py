@@ -24,3 +24,20 @@ def criar_tabela():
             conexao.close()
 
 criar_tabela()
+
+
+def criar_roupa(nome, categoria, tamanho, cor, preco, estoque):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute("""
+                INSERT INTO roupas (nome, categoria, tamanho, cor, preco, estoque)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (nome, categoria, tamanho, cor, preco, estoque))
+            conexao.commit()
+            print("Roupa adicionada com sucesso!")
+        except Exception as erro:
+            print(f"Erro ao adicionar roupa: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
