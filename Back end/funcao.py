@@ -6,7 +6,7 @@ def criar_tabela():
         try:
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS roupas (
-                    id SERIAL PRIMARY KEY,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
                     nome TEXT NOT NULL,
                     categoria TEXT NOT NULL,
                     tamanho TEXT NOT NULL,
@@ -75,16 +75,17 @@ def deletar_roupa(id_roupa):
             cursor.close()
             conexao.close()
 
-def buscar_mroupa(id_roupa):
+
+def buscar_roupa(id_roupa):
     conexao, cursor = conectar()
     if conexao:
         try:
             cursor.execute(
-                "SELECT * FROM roupas WHERE id = %s", (id_roupa,)
+                "SELECT * FROM roupas WHERE id = ?", (id_roupa,)
             )
             return cursor.fetchone()
         except Exception as erro:
-            print(f"Erro ao buscar:  {erro}")
+            print(f"Erro ao buscar roupa:  {erro}")
         finally:
             cursor.close()
             conexao.close()
