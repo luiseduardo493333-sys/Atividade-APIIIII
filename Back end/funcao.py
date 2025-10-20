@@ -75,3 +75,17 @@ def deletar_roupa(id_roupa):
         finally:
             cursor.close()
             conexao.close()
+
+def buscar_mroupa(id_roupa):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "SELECT * FROM movies WHERE id = %s", (id_roupa,)
+            )
+            return cursor.fetchone()
+        except Exception as erro:
+            print(f"Erro ao buscar:  {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
