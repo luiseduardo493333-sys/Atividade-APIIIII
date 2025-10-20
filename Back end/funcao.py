@@ -41,3 +41,20 @@ def criar_roupa(nome, categoria, tamanho, cor, preco, estoque):
         finally:
             cursor.close()
             conexao.close()
+
+
+def atualizar_roupa(id_roupa, novo_preco):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "UPDATE roupas SET preco = ? WHERE id = ?",
+                (novo_preco, id_roupa)
+            )
+            conexao.commit()
+            print("Preço da roupa atualizado com sucesso!")
+        except Exception as erro:
+            print(f"Erro ao atualizar o preço da roupa: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
