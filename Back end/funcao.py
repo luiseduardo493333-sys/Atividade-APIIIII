@@ -6,7 +6,7 @@ def criar_tabela():
         try:
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS roupas (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id PRIMARY KEY SERIAL,
                     nome TEXT NOT NULL,
                     categoria TEXT NOT NULL,
                     tamanho TEXT NOT NULL,
@@ -76,7 +76,7 @@ def deletar_roupa(id_roupa):
             conexao.close()
 
 
-def buscar_roupa(id_roupa):
+def listar_roupa(id_roupa):
     conexao, cursor = conectar()
     if conexao:
         try:
