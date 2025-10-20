@@ -58,3 +58,20 @@ def atualizar_roupa(id_roupa, novo_preco):
         finally:
             cursor.close()
             conexao.close()
+
+
+def deletar_roupa(id_roupa):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "DELETE FROM roupas WHERE id = ?",
+                (id_roupa,)
+            )
+            conexao.commit()
+            print(f"Roupa com ID {id_roupa} deletada com sucesso.")
+        except Exception as erro:
+            print(f"Erro ao deletar a roupa: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
