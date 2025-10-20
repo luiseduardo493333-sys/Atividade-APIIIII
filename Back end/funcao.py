@@ -52,9 +52,8 @@ def atualizar_roupa(id_roupa, novo_preco):
                 (novo_preco, id_roupa)
             )
             conexao.commit()
-            print("Preço da roupa atualizado com sucesso!")
         except Exception as erro:
-            print(f"Erro ao atualizar o preço da roupa: {erro}")
+            print(f"Erro ao atualizar a roupa: {erro}")
         finally:
             cursor.close()
             conexao.close()
