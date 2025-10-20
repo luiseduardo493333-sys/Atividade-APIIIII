@@ -35,3 +35,29 @@ def atualizar_roupa(id_roupa: int, novo_preco: float):
         return {"Mensagem": "Roupa atualizada com sucesso!"}
     else:
         return {"Erro": "Roupa não encontrada."}
+    
+
+@app.delete("/roupas/{id_roupa}")
+def deletar_roupa(id_roupa: int):
+    roupa = funcao.buscar_roupa(id_roupa)
+    if roupa:
+        funcao.deletar_roupa(id_roupa)
+        return {"Mensagem": "Roupa deletada com sucesso!"}
+    else:
+        return {"Erro": "Roupa não encontrada"}
+ 
+@app.get("/roupas/{id_roupa}")
+def obter_roupa(id_roupa: int):
+    roupa = funcao.buscar_roupa(id_roupa)
+    if roupa:
+        return {
+            "id": roupa[0],
+            "nome": roupa[1],
+            "categoria": roupa[2],
+            "tamanho": roupa[3],
+            "cor": roupa[4],
+            "preco": roupa[5],
+            "estoque": roupa[6]
+        }
+    else:
+        return {"Erro": "Roupa não encontrada."}    
