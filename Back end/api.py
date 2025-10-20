@@ -26,3 +26,12 @@ def catalogo():
 def adicionar_roupa(nome: str, categoria: str, tamanho: str, cor: str, preco: float, estoque: int):
     funcao.criar_roupa(nome, categoria, tamanho, cor, preco, estoque)
     return {"Mensagem": "Roupa adicionada com sucesso!"}
+
+@app.put("/roupas/{id_roupa}")
+def atualizar_roupa(id_roupa: int, novo_preco: float):
+    roupa = funcao.buscar_roupa(id_roupa)
+    if roupa:
+        funcao.atualizar_roupa(id_roupa, novo_preco)
+        return {"Mensagem": "Roupa atualizada com sucesso!"}
+    else:
+        return {"Erro": "Roupa não encontrada."}
